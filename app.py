@@ -112,8 +112,7 @@ st.divider()
 # =========================================================
 # MODEL
 # =========================================================
-
-MODEL_PATH = "./podcast_summarizer_final"
+MODEL_PATH = "Chethangowdarc/podcast-bart-summarizer1"
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -122,7 +121,8 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 def load_model():
 
     tokenizer = AutoTokenizer.from_pretrained(
-        MODEL_PATH
+        MODEL_PATH,
+        use_fast=True
     )
 
     model = AutoModelForSeq2SeqLM.from_pretrained(
@@ -137,7 +137,6 @@ def load_model():
 
 with st.spinner("Loading AI model..."):
     tokenizer, model = load_model()
-
 
 # =========================================================
 # SIDEBAR
